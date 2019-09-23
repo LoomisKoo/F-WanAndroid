@@ -42,11 +42,12 @@ class KnowledgeListState extends State<KnowledgeListPage> {
           ),
           body: new TabBarView(
             children: data.children.map((tree.Children child) {
-              return ListPage(cid: child.id,);
+              return ListPage(
+                cid: child.id,
+              );
             }).toList(),
           ),
-        )
-    );
+        ));
   }
 
   @override
@@ -75,62 +76,75 @@ class ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading ? SpinKitCircle(
-      itemBuilder: (_, int index) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Colors.grey,
-          ),
-        );
-      },
-    ) : data.length > 0 ? new ListView(
-      children: data.map((item) {
-        var date = DateTime.fromMillisecondsSinceEpoch(
-            item.publishTime, isUtc: true);
-        return new GestureDetector(
-          onTap: () {
-            NavigatorUtils.gotoDetail(context, item.link, item.title);
-          },
-          child: new Card(
-            child: Container(
-              margin: EdgeInsets.only(
-                  left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      new Text(item.author, style: new TextStyle(
-                          fontSize: 18.0, color: Colors.black87),),
-                      new Text(
-                        "${date.year}年${date.month}月${date.day}日 ${date
-                            .hour}:${date.minute}",
-                        style: new TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.grey
+    return isLoading
+        ? SpinKitCircle(
+            itemBuilder: (_, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.grey,
+                ),
+              );
+            },
+          )
+        : data.length > 0
+            ? new ListView(
+                children: data.map((item) {
+                  var date = DateTime.fromMillisecondsSinceEpoch(
+                      item.publishTime,
+                      isUtc: true);
+                  return new GestureDetector(
+                    onTap: () {
+                      NavigatorUtils.gotoDetail(context, item.link, item.title);
+                    },
+                    child: new Card(
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
+                        child: new Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Text(
+                                  item.author,
+                                  style: new TextStyle(
+                                      fontSize: 18.0, color: Colors.black87),
+                                ),
+                                new Text(
+                                  "${date.year}年${date.month}月${date.day}日 ${date.hour}:${date.minute}",
+                                  style: new TextStyle(
+                                      fontSize: 12.0, color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                            new Container(
+                              margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                              child: Text(
+                                item.title,
+                                style: new TextStyle(
+                                    color: Colors.black, fontSize: 18.0),
+                              ),
+                            ),
+                            new Text(
+                              "${item.author}/${item.chapterName}",
+                              style: new TextStyle(
+                                  fontSize: 14.0, color: Colors.grey),
+                            )
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                  new Container(
-                    margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    child: Text(item.title, style: new TextStyle(
-                        color: Colors.black, fontSize: 18.0),),
-                  ),
-                  new Text("${item.author}/${item.chapterName}",
-                    style: new TextStyle(fontSize: 14.0, color: Colors.grey),)
-                ],
-              ),
-            ),
-          ),
-        );
-      }).toList(),
-    ) : new Center(
-      child: new Text(
-        "没有更多数据哦", style: new TextStyle(fontSize: 20, color: Colors.grey),),
-    );
+                    ),
+                  );
+                }).toList(),
+              )
+            : new Center(
+                child: new Text(
+                  "没有更多数据哦",
+                  style: new TextStyle(fontSize: 20, color: Colors.grey),
+                ),
+              );
   }
 
   @override

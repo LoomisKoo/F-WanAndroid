@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class CommonUtil{
+class CommonUtil {
   /** 获取屏幕宽度 */
   static double getScreenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
@@ -20,5 +20,4 @@ class CommonUtil{
   static int currentTimeMillis() {
     return new DateTime.now().millisecondsSinceEpoch;
   }
-
 }

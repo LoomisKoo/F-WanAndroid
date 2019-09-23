@@ -33,12 +33,12 @@ class Data {
 
   Data(
       {this.curPage,
-        this.datas,
-        this.offset,
-        this.over,
-        this.pageCount,
-        this.size,
-        this.total});
+      this.datas,
+      this.offset,
+      this.over,
+      this.pageCount,
+      this.size,
+      this.total});
 
   Data.fromJson(Map<String, dynamic> json) {
     curPage = json['curPage'];
@@ -97,28 +97,28 @@ class Datas {
 
   Datas(
       {this.apkLink,
-        this.author,
-        this.chapterId,
-        this.chapterName,
-        this.collect,
-        this.courseId,
-        this.desc,
-        this.envelopePic,
-        this.fresh,
-        this.id,
-        this.link,
-        this.niceDate,
-        this.origin,
-        this.projectLink,
-        this.publishTime,
-        this.superChapterId,
-        this.superChapterName,
-        this.tags,
-        this.title,
-        this.type,
-        this.userId,
-        this.visible,
-        this.zan});
+      this.author,
+      this.chapterId,
+      this.chapterName,
+      this.collect,
+      this.courseId,
+      this.desc,
+      this.envelopePic,
+      this.fresh,
+      this.id,
+      this.link,
+      this.niceDate,
+      this.origin,
+      this.projectLink,
+      this.publishTime,
+      this.superChapterId,
+      this.superChapterName,
+      this.tags,
+      this.title,
+      this.type,
+      this.userId,
+      this.visible,
+      this.zan});
 
   Datas.fromJson(Map<String, dynamic> json) {
     apkLink = json['apkLink'];

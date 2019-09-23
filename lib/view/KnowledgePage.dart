@@ -23,68 +23,77 @@ class KnowledgeState extends State<KnowledgePage> {
           title: Text("知识体系"),
           centerTitle: true,
         ),
-        body: isLoading ? SpinKitCircle(
-          itemBuilder: (_, int index) {
-            return DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.grey,
-              ),
-            );
-          },
-        ) : data.length > 0 ? ListView(
-          children: data.map((data) {
-            return new GestureDetector(
-                onTap: () {
-                  NavigatorUtils.gotoKnowledgeList(
-                      context, data.name, data);
+        body: isLoading
+            ? SpinKitCircle(
+                itemBuilder: (_, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.grey,
+                    ),
+                  );
                 },
-                child: new Card(
-                  child: new Row(
-                    children: <Widget>[
-                      new Expanded(
-                        child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            new Container(
-                              child: Text(data.name,
-                                style: new TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.black
+              )
+            : data.length > 0
+                ? ListView(
+                    children: data.map((data) {
+                      return new GestureDetector(
+                          onTap: () {
+                            NavigatorUtils.gotoKnowledgeList(
+                                context, data.name, data);
+                          },
+                          child: new Card(
+                            child: new Row(
+                              children: <Widget>[
+                                new Expanded(
+                                  child: new Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      new Container(
+                                        child: Text(
+                                          data.name,
+                                          style: new TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
+                                        margin: EdgeInsets.only(
+                                            left: 10.0,
+                                            bottom: 10.0,
+                                            top: 15.0),
+                                      ),
+                                      Wrap(
+                                        children: data.children.map((item) {
+                                          return new Container(
+                                            margin: EdgeInsets.only(
+                                                left: 10.0,
+                                                right: 10.0,
+                                                bottom: 3.0,
+                                                top: 3.0),
+                                            child: Text(
+                                              item.name,
+                                              style: new TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 16.0),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              margin: EdgeInsets.only(
-                                  left: 10.0, bottom: 10.0, top: 15.0),
+                                new Icon(Icons.navigate_next),
+                              ],
                             ),
-                            Wrap(
-                              children: data.children.map((item) {
-                                return new Container(
-                                  margin: EdgeInsets.only(
-                                      left: 10.0,
-                                      right: 10.0,
-                                      bottom: 3.0,
-                                      top: 3.0),
-                                  child: Text(item.name, style: new TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16.0
-                                  ),),
-                                );
-                              }).toList(),
-                            )
-                          ],
-                        ),
-                      ),
-                      new Icon(Icons.navigate_next),
-                    ],
-                  ),
-                )
-            );
-          }).toList(),
-        ) : new Center(
-          child: new Text(
-            "没有更多数据哦", style: new TextStyle(fontSize: 20, color: Colors.grey),),
-        )
-    );
+                          ));
+                    }).toList(),
+                  )
+                : new Center(
+                    child: new Text(
+                      "没有更多数据哦",
+                      style: new TextStyle(fontSize: 20, color: Colors.grey),
+                    ),
+                  ));
   }
 
   @override
@@ -104,4 +113,3 @@ class KnowledgeState extends State<KnowledgePage> {
     });
   }
 }
-

@@ -37,40 +37,39 @@ class _ProjectPageState extends State<ProjectPage> {
 
   @override
   Widget build(BuildContext context) {
-    return data.length == 0 ? SpinKitCircle(
-      itemBuilder: (_, int index) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Colors.grey,
-          ),
-        );
-      },
-    ) : new DefaultTabController(
-        length: data.length,
-        child: new Scaffold(
-          appBar: AppBar(
-              title: Text("项目"),
-              centerTitle: true,
-              bottom: TabBar(
-                  isScrollable: true, //可以滑动
-                  tabs: data.map((item) {
-                    return new Tab(
-                      text: item.name,
-                    );
-                  }).toList()
-              )
-          ),
-          body: new TabBarView(children: data.map((item) {
-            return ProjectListContent(item.id);
-          }).toList()),
-        )
-    );
+    return data.length == 0
+        ? SpinKitCircle(
+            itemBuilder: (_, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.grey,
+                ),
+              );
+            },
+          )
+        : new DefaultTabController(
+            length: data.length,
+            child: new Scaffold(
+              appBar: AppBar(
+                  title: Text("项目"),
+                  centerTitle: true,
+                  bottom: TabBar(
+                      isScrollable: true, //可以滑动
+                      tabs: data.map((item) {
+                        return new Tab(
+                          text: item.name,
+                        );
+                      }).toList())),
+              body: new TabBarView(
+                  children: data.map((item) {
+                return ProjectListContent(item.id);
+              }).toList()),
+            ));
   }
 }
 
 class ProjectListContent extends StatefulWidget {
-
   final int cid;
 
   ProjectListContent(this.cid, {Key key}) : super(key: key);
@@ -91,10 +90,10 @@ class ProjectListState extends State<ProjectListContent> {
   final int cid;
 
   //这个key用来在不是手动下拉，而是点击某个button或其它操作时，代码直接触发下拉刷新
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<
-      RefreshIndicatorState>();
-  final ScrollController _scrollController = new ScrollController(
-      keepScrollOffset: false);
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
+  final ScrollController _scrollController =
+      new ScrollController(keepScrollOffset: false);
 
   ProjectListState(this.cid);
 
@@ -132,24 +131,26 @@ class ProjectListState extends State<ProjectListContent> {
 
   @override
   Widget build(BuildContext context) {
-    return data.length == 0 ? SpinKitCircle(
-      itemBuilder: (_, int index) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Colors.grey,
-          ),
-        );
-      },
-    ) : new ListView.builder(
-      physics: const AlwaysScrollableScrollPhysics(),
-      key: _refreshIndicatorKey,
-      itemCount: data.length + 1,
-      controller: _scrollController,
-      itemBuilder: (context, index) {
-        return getItem(index);
-      },
-    );
+    return data.length == 0
+        ? SpinKitCircle(
+            itemBuilder: (_, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.grey,
+                ),
+              );
+            },
+          )
+        : new ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            key: _refreshIndicatorKey,
+            itemCount: data.length + 1,
+            controller: _scrollController,
+            itemBuilder: (context, index) {
+              return getItem(index);
+            },
+          );
   }
 
   Widget getItem(int i) {
@@ -161,8 +162,8 @@ class ProjectListState extends State<ProjectListContent> {
       }
     } else {
       var item = data[i];
-      var date = DateTime.fromMillisecondsSinceEpoch(
-          item.publishTime, isUtc: true);
+      var date =
+          DateTime.fromMillisecondsSinceEpoch(item.publishTime, isUtc: true);
       return _buildCardItem(item, date, i);
     }
   }
@@ -173,44 +174,56 @@ class ProjectListState extends State<ProjectListContent> {
         NavigatorUtils.gotoDetail(context, item.link, item.title);
       },
       child: new Card(
-          child: new Padding(padding: EdgeInsets.all(10.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Image.network(item.envelopePic, fit: BoxFit.cover,
-                  width: 80.0,
-                  height: 120.0,
-                ),
-                new Container(
-                  height: 120.0,
-                  margin: EdgeInsets.only(left: 8.0),
-                  width: CommonUtil.getScreenWidth(context) - 120.0,
-                  child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          child: new Padding(
+        padding: EdgeInsets.all(10.0),
+        child: new Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Image.network(
+              item.envelopePic,
+              fit: BoxFit.cover,
+              width: 80.0,
+              height: 120.0,
+            ),
+            new Container(
+              height: 120.0,
+              margin: EdgeInsets.only(left: 8.0),
+              width: CommonUtil.getScreenWidth(context) - 120.0,
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  new Text(
+                    item.title,
+                    style: new TextStyle(fontSize: 16.0, color: Colors.black87),
+                    maxLines: 2,
+                  ),
+                  new Text(
+                    item.desc,
+                    style: new TextStyle(fontSize: 14.0, color: Colors.grey),
+                    maxLines: 3,
+                  ),
+                  new Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      new Text(item.title, style: new TextStyle(
-                          fontSize: 16.0, color: Colors.black87),maxLines: 2,),
-                      new Text(item.desc, style: new TextStyle(
-                          fontSize: 14.0, color: Colors.grey), maxLines: 3,),
-                      new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          new Text(item.author, style: new TextStyle(
-                              fontSize: 12.0, color: Colors.grey),),
-                          new Text(
-                            "${date.year}年${date.month}月${date.day}日 ${date
-                                .hour}:${date.minute}", style: new TextStyle(
-                              fontSize: 11.0, color: Colors.grey),),
-                        ],
-                      )
+                      new Text(
+                        item.author,
+                        style:
+                            new TextStyle(fontSize: 12.0, color: Colors.grey),
+                      ),
+                      new Text(
+                        "${date.year}年${date.month}月${date.day}日 ${date.hour}:${date.minute}",
+                        style:
+                            new TextStyle(fontSize: 11.0, color: Colors.grey),
+                      ),
                     ],
-                  ),
-                )
-              ],
-            ),
-          )
-      ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      )),
     );
   }
 
@@ -241,5 +254,3 @@ class ProjectListState extends State<ProjectListContent> {
     );
   }
 }
-
-

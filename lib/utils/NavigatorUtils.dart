@@ -23,36 +23,40 @@ class NavigatorUtils {
 
   ///去详情
   static gotoDetail(BuildContext context, String url, String title) {
-    return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) =>
-        new DetailsWidget(url, title)));
+    return Navigator.push(
+        context,
+        new CupertinoPageRoute(
+            builder: (context) => new DetailsWidget(url, title)));
   }
 
   ///去搜索界面
   static gotoSearch(BuildContext context) {
     return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) =>
-        new SearchPage()));
+        new CupertinoPageRoute(builder: (context) => new SearchPage()));
   }
 
   ///去搜索列表
   static gotoSearchList(BuildContext context, String content) {
-    return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) =>
-        new SearchListPage(content)));
+    return Navigator.push(
+        context,
+        new CupertinoPageRoute(
+            builder: (context) => new SearchListPage(content)));
   }
 
   ///去知识详情界面
   static gotoKnowledgeList(BuildContext context, String name, n.Data data) {
-    return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) =>
-        new KnowledgeListPage(name: name, data: data,)));
+    return Navigator.push(
+        context,
+        new CupertinoPageRoute(
+            builder: (context) => new KnowledgeListPage(
+                  name: name,
+                  data: data,
+                )));
   }
 
   ///关于我界面
   static gotoAboutUs(BuildContext context) {
     return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) =>
-        new AboutUsPage()));
+        new CupertinoPageRoute(builder: (context) => new AboutUsPage()));
   }
 }

@@ -23,15 +23,19 @@ class PersonalState extends State<PersonalPage> {
             children: <Widget>[
               Image.network(
                 "http://pic170.nipic.com/file/20180629/24903911_111202018080_2.jpg",
-                width: 500, height: 150.0, fit: BoxFit.cover,),
+                width: 500,
+                height: 150.0,
+                fit: BoxFit.cover,
+              ),
               Container(
                 width: 60.0,
                 height: 60.0,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
-                  image: DecorationImage(image: NetworkImage(
-                      "http://pic20.photophoto.cn/20110902/0020033018777780_b.jpg"),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "http://pic20.photophoto.cn/20110902/0020033018777780_b.jpg"),
                       fit: BoxFit.cover),
                 ),
               )
@@ -47,9 +51,7 @@ class PersonalState extends State<PersonalPage> {
               }),
           Container(
             height: 1.0,
-            decoration: BoxDecoration(
-                color: Colors.black12
-            ),
+            decoration: BoxDecoration(color: Colors.black12),
           )
         ],
       ),

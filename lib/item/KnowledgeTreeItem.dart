@@ -37,14 +37,15 @@ class Data {
   bool userControlSetTop;
   int visible;
 
-  Data({this.children,
-    this.courseId,
-    this.id,
-    this.name,
-    this.order,
-    this.parentChapterId,
-    this.userControlSetTop,
-    this.visible});
+  Data(
+      {this.children,
+      this.courseId,
+      this.id,
+      this.name,
+      this.order,
+      this.parentChapterId,
+      this.userControlSetTop,
+      this.visible});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['children'] != null) {
@@ -88,14 +89,15 @@ class Children {
   bool userControlSetTop;
   int visible;
 
-  Children({this.children,
-    this.courseId,
-    this.id,
-    this.name,
-    this.order,
-    this.parentChapterId,
-    this.userControlSetTop,
-    this.visible});
+  Children(
+      {this.children,
+      this.courseId,
+      this.id,
+      this.name,
+      this.order,
+      this.parentChapterId,
+      this.userControlSetTop,
+      this.visible});
 
   Children.fromJson(Map<String, dynamic> json) {
     courseId = json['courseId'];

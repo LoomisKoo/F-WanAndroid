@@ -39,16 +39,15 @@ class Data {
 
   Data(
       {this.children,
-        this.courseId,
-        this.id,
-        this.name,
-        this.order,
-        this.parentChapterId,
-        this.userControlSetTop,
-        this.visible});
+      this.courseId,
+      this.id,
+      this.name,
+      this.order,
+      this.parentChapterId,
+      this.userControlSetTop,
+      this.visible});
 
   Data.fromJson(Map<String, dynamic> json) {
-
     courseId = json['courseId'];
     id = json['id'];
     name = json['name'];

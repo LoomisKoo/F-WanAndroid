@@ -39,13 +39,13 @@ class Data {
 
   Data(
       {this.desc,
-        this.id,
-        this.imagePath,
-        this.isVisible,
-        this.order,
-        this.title,
-        this.type,
-        this.url});
+      this.id,
+      this.imagePath,
+      this.isVisible,
+      this.order,
+      this.title,
+      this.type,
+      this.url});
 
   Data.fromJson(Map<String, dynamic> json) {
     desc = json['desc'];
